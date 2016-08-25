@@ -180,16 +180,7 @@ $response = $lib->replace('/videos/12345', '/home/aaron/Downloads/ada.mp4', fals
 
 # Upload or replace videos from the client
 
-The streaming upload method allows developers to pause and resume uploads, gives developers the information needed to build progress bars, and more. When using this method for a client-side upload, the video file is never transferred to your server.
-
-This method takes four steps to complete, and requires a mix of server and client side requests. Please review the PUT upload documentation on the Vimeo Developer site before continuing. The four-step upload process as follows:
-
-	1. Server: Generate an upload ticket by making a POST request.
-	2. Client: Upload your video via PUT to the upload_link_secure returned from step 1.
-	3. Client: Verify your upload and check how much of a file is present on the upload server. Repeat this request as needed during the upload process.
-	4. Server: Complete your upload by making a DELETE request to the complete_uri returned from step 1.
-
-The response of the DELETE request will contain the new video uri in the response.
+To upload from the client, you will have to mix some server side, and client side API requests. We support two workflows, the first of which is much easier than the second.
 
 ### Simple POST uploads
 
