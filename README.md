@@ -189,8 +189,16 @@ This workflow is well documented on Vimeo's developer site. You can read more he
 
 ### Streaming uploads
 
-Streaming uploads support progress bars, and resumable uploading. If you want to perform these uploads client side you will need to start with some server side requests.
-Read through the [Vimeo documentation](https://developer.vimeo.com/api/upload#http-put-uploading) first. Step 1 and 4 should be performed on the server, while step 2 and 3 can be performed on the client. With this workflow the video will never be transferred to your servers.
+The streaming upload method allows developers to pause and resume uploads, and gives developers the information needed to build progress bars. When using this method for a client-side upload, the video file is never transferred to your server.
+
+This method takes four steps to complete, and requires a mix of server and client side requests. Please review the  [upload documentation](https://developer.vimeo.com/api/upload/videos#resumable-http-put-uploads) on the Vimeo Developer site before continuing. The four-step upload process as follows:
+
+	1. Server: Generate an upload ticket by making a POST request.
+	2. Client: Upload your video via PUT to the upload_link_secure returned from step 1.
+	3. Client: Verify your upload and check how much of a file is present on the upload server. Repeat this request as needed during the upload process.
+	4. Server: Complete your upload by making a DELETE request to the complete_uri returned from step 1.
+
+The response of the DELETE request will contain the new video uri in the response.
 
 # Upload videos from a url
 
